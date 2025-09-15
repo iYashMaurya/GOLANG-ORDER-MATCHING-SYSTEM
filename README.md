@@ -6,29 +6,15 @@ A simple Go service that provides an API to place and manage stock orders. The p
 
 - Go 1.20+ installed → [Download Go](https://golang.org/dl/)
 - Homebrew (for macOS) → [Install Homebrew](https://brew.sh/)
-- MySQL:
-  - **Linux (Ubuntu/Debian)**
-    ```bash
-    sudo apt update
-    sudo apt install mysql-server -y
-    sudo systemctl start mysql
-    ```
-  - **macOS (Homebrew)**
-    ```bash
-    brew install mysql
-    brew services start mysql
-    ```
-  - **Windows**
-    - Download installer: [MySQL Installer](https://dev.mysql.com/downloads/installer/)
-    - Start MySQL from Services or MySQL Workbench.
+- MySQL
 - Postman or curl (for testing)
 
 ## Setup Instructions
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/<your-username>/<your-repo>.git
-   cd <your-repo>
+   https://github.com/iYashMaurya/GOLANG-ORDER-MATCHING-SYSTEM.git
+   cd GOLANG-ORDER-MATCHING-SYSTEM
    ```
 
 2. **Install Dependencies**
