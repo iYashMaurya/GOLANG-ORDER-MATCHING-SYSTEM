@@ -16,8 +16,8 @@ A simple Go service that provides an API to place and manage stock orders. The p
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/<your-username>/<your-repo>.git
-   cd <your-repo>
+   https://github.com/iYashMaurya/GOLANG-ORDER-MATCHING-SYSTEM.git
+   cd GOLANG-ORDER-MATCHING-SYSTEM
    ```
 
 2. **Install Dependencies**
