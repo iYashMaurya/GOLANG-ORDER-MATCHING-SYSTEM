@@ -1,0 +1,16 @@
+# Ignore environment files
+.env
+
+# Binaries
+*.exe
+*.out
+*.o
+
+# Vendor folder (if not using Go modules)
+/vendor/
+
+# Logs
+*.log
+
+# OS-specific
+.DS_Store
