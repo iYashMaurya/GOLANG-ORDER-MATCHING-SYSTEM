@@ -1,23 +1,34 @@
 # Order Matching Engine
 
-A simple Go service that provides an API to place and manage stock orders. The project uses Go, Gorilla Mux, and a local SQLite database (via GORM).
+A simple Go service that provides an API to place and manage stock orders. The project uses Go, Gorilla Mux, and a local MySQL database (via GORM).
 
 ## Prerequisites
 
 - Go 1.20+ installed → [Download Go](https://golang.org/dl/)
 - Homebrew (for macOS) → [Install Homebrew](https://brew.sh/)
-- SQLite (installed via brew):
-  ```bash
-  brew install sqlite
-  ```
+- MySQL:
+  - **Linux (Ubuntu/Debian)**
+    ```bash
+    sudo apt update
+    sudo apt install mysql-server -y
+    sudo systemctl start mysql
+    ```
+  - **macOS (Homebrew)**
+    ```bash
+    brew install mysql
+    brew services start mysql
+    ```
+  - **Windows**
+    - Download installer: [MySQL Installer](https://dev.mysql.com/downloads/installer/)
+    - Start MySQL from Services or MySQL Workbench.
 - Postman or curl (for testing)
 
 ## Setup Instructions
 
 1. **Clone the Repository**
    ```bash
-   https://github.com/iYashMaurya/GOLANG-ORDER-MATCHING-SYSTEM.git
-   cd GOLANG-ORDER-MATCHING-SYSTEM
+   git clone https://github.com/<your-username>/<your-repo>.git
+   cd <your-repo>
    ```
 
 2. **Install Dependencies**
@@ -25,11 +36,53 @@ A simple Go service that provides an API to place and manage stock orders. The p
    go mod tidy
    ```
 
-3. **Run Database Migrations**
+3. **Install MySQL**
+   - **Linux (Ubuntu/Debian)**
+     ```bash
+     sudo apt update
+     sudo apt install mysql-server -y
+     sudo systemctl start mysql
+     ```
+   - **macOS (Homebrew)**
+     ```bash
+     brew install mysql
+     brew services start mysql
+     ```
+   - **Windows**
+     - Download installer: [MySQL Installer](https://dev.mysql.com/downloads/installer/)
+     - Start MySQL from Services or MySQL Workbench.
 
-   The app uses SQLite by default. The DB file will be auto-created. You don’t need to run migrations manually — just start the app.
+4. **Database Setup**
+   Login to MySQL:
+   ```bash
+   mysql -u root -p
+   ```
+   Create the database:
+   ```sql
+   CREATE DATABASE order_matching_system;
+   ```
+   (Optional) Verify:
+   ```sql
+   SHOW DATABASES;
+   ```
 
-4. **Run the Server**
+5. **Environment Variables**
+   Copy `.env.example` into `.env`:
+   ```bash
+   cp .env.example .env
+   ```
+   **.env.example**
+   ```
+   DB_USER=root
+   DB_PASS=password
+   DB_HOST=localhost
+   DB_PORT=3306
+   DB_NAME=order_matching_system
+   PORT=8080
+   ```
+   Edit `.env` to match your local MySQL credentials.
+
+6. **Run the Server**
    ```bash
    go run main.go
    ```
@@ -87,26 +140,24 @@ A simple Go service that provides an API to place and manage stock orders. The p
    curl http://localhost:8080/trades
    ```
 
-## Running Tests (Optional)
-
-```bash
-go test ./...
-```
-
 ## Project Structure
 
 ```
-.
-├── main.go
-├── db/
-│   └── db.go
-├── handlers/
-│   └── order_handlers.go
-├── models/
-│   └── order.go
-├── routes/
-│   └── routes.go
+Order-Matching-System/
+├── config
+│   └── config.go
+├── database
+│   └── connection.go
 ├── go.mod
 ├── go.sum
-└── README.md
+├── handler
+│   └── api.go
+├── main.go
+├── models
+│   ├── order.go
+│   └── trade.go
+└── service
+    ├── matching_engine.go
+    ├── order-book.go
+    └── order_heap.go
 ```
